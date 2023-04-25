@@ -2,10 +2,10 @@ import paramiko
 
 target = 'IP'
 port = 22
-username = 'root'
+username = open('pass.txt', 'username')
 password = 'password'
 
-cmd = "reboot"
+cmd = "ls"
 
 with paramiko.SSHClient() as client:
     client.load_system_host_keys()
