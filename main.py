@@ -1,17 +1,16 @@
 import paramiko
-from classes import *       # class aveliable: "RouterConnection", 
-from functools import *     # function avelable: "execute_command", "close", 
 
+target = 'IP'
+port = 22
+username = 'root'
+password = 'password'
 
-# Create a new router connection object
-router = RouterConnection('hostname', 'username', 'password')
+cmd = "reboot"
 
-# Execute a command on the router
-output = router.execute_command('show interfaces')
-
-# Print the output
-print(output)
-
-# Close the router connection
-router.close()
-
+with paramiko.SSHClient() as client:
+    client.load_system_host_keys()
+    client.connect(target, port, username, password)
+    print(cmd)
+    (stdin, stdout, stderr) = client.exec_command(cmd)
+    output = stdout.read()
+    print(str(output, 'utf8'))
