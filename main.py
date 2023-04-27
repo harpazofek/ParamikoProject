@@ -7,6 +7,8 @@ from functions import *
 
 hostname = '192.168.197.134'
 port = 22
+# cmd = "df -h"
+
 
 # main()
 
