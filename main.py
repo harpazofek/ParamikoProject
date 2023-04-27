@@ -7,12 +7,6 @@ from functions import *
 
 hostname = '192.168.197.134'
 port = 22
-# cmd = "df -h"
-# is_online = "uptime"
-
-# with paramiko.SSHClient() as client:
-#     
-#     exit_status = stdout.channel.recv_exit_status()                             # Im use this options to blocking call till the CMD done   
 
 # main()
 
