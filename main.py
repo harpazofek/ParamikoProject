@@ -1,16 +1,36 @@
 import paramiko
+import time
+from secret_password import *
+from functions import *
 
-target = 'IP'
+
+
+hostname = '192.168.197.134'
 port = 22
-username = open('pass.txt', 'username')
-password = 'password'
+# cmd = "df -h"
+# is_online = "uptime"
 
-cmd = "ls"
+# with paramiko.SSHClient() as client:
+#     
+#     exit_status = stdout.channel.recv_exit_status()                             # Im use this options to blocking call till the CMD done   
 
-with paramiko.SSHClient() as client:
-    client.load_system_host_keys()
-    client.connect(target, port, username, password)
+# main()
+
+running = True
+
+
+while running:
+    cmd = "df -h"
+# Connect to the remote server
+    ssh = ssh_connection(hostname, port, username, password)
+    print("ssh")
+# Execute the command
+    cmd_exec(ssh, cmd)
     print(cmd)
-    (stdin, stdout, stderr) = client.exec_command(cmd)
-    output = stdout.read()
-    print(str(output, 'utf8'))
+# Wait for to come back up
+    waiting_for_online(ssh)
+    print(f"{cmd}")
+# Close the SSH connection
+    ssh.close()
+    running = False
+print(f"Closed SSH connection to {hostname}")
