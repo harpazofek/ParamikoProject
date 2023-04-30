@@ -6,8 +6,23 @@ is_remote = True
 ssh_client = ssh_connection(hostname, port, username, password)
 trying_time = 0
 
+# cmd = "reboot"
+# (stdin, stdout, stderr) = ssh_client.exec_command(cmd)
+# output = stdout.read().decode()
+# print(f"{output}")
 
-while is_remote:
+# while not ssh_client and trying_time < 10:
+#     time.sleep(10)
+#     ssh_client = ssh_connection(hostname, port, username, password)
+#     trying_time += 1
+
+# if ssh_client:        
+#     ssh_client.close()  
+#     print(f"Client {hostname} connection close")
+
+
+
+while is_remote and ssh_client:
     cmd = input(f"enter a command for the remote vm : (or 'q' to quit) ").lower()
     if cmd == 'q':                                  # Check if user wants to quit
         print("Programing Shut Down")
@@ -32,5 +47,6 @@ while is_remote:
                     print(f"\n{trying_time} attempts made. Recursive loop.")
                     break
         print("Command Done")
+if ssh_client:        
     ssh_client.close()  
-print(f"Client {hostname} connection close")
+    print(f"Client {hostname} connection close")
