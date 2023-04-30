@@ -1,6 +1,5 @@
 import paramiko
 
-
 def ssh_connection(hostname, port, username, password):
     ssh = paramiko.SSHClient()
     ssh.load_system_host_keys()
@@ -16,3 +15,6 @@ def ssh_connection(hostname, port, username, password):
            print ("conecting to remoet faild, check your cridentials.")
        return None
     
+def run_ssh_cmd(ssh_client, cmd):
+        (stdin, stdout, stderr) = ssh_client.exec_command(cmd)
+        return stdout.read().decode()
