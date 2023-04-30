@@ -16,11 +16,6 @@ trying_time = 0
 #     ssh_client = ssh_connection(hostname, port, username, password)
 #     trying_time += 1
 
-# if ssh_client:        
-#     ssh_client.close()  
-#     print(f"Client {hostname} connection close")
-
-
 
 while is_remote and ssh_client:
     cmd = input(f"enter a command for the remote vm : (or 'q' to quit) ").lower()
